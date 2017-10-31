@@ -2,11 +2,21 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>QCM-ENI-10A</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>AccesStagiaires</servlet-name>
+    <jsp-file>/login/AccesStagiaires.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccesStagiaires</servlet-name>
+    <url-pattern>/login/AccesStagiaires</url-pattern>
+  </servlet-mapping>
+    <resource-ref>
+    <description>Pool de connexions vers la base QCM</description>
+    <res-ref-name>jdbc/Qcm</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>
+

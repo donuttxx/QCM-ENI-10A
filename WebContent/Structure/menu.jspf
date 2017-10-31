@@ -1,0 +1,8 @@
+	    	
+	    	
+	    	<h3>Menu</h3>
+				<a href="<%=request.getContextPath() %>/login/AccesStagiaires">Accès Stagiaires</a><br />
+				<a href="<%=request.getContextPath() %>/login/AccesFormateurs">Accès Formateurs</a><br />
+				<a href="<%=request.getContextPath() %>/login/AccesResponsableFormations">Accès Responsable Formations</a><br />	
+			<br /><br />
+			

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	
+	<!-- Definition du pool de connexions -->
+    <Resource 
+      	name="jdbc/Qcm" 
+      	type="javax.sql.DataSource" 
+      	
+      	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+      	url="jdbc:sqlserver://localhost:1433;databasename=Qcm"
+      	username="sa"
+      	password="Pa$$w0rd"
+      	
+      	maxActive="5"
+      	maxIdle="3"
+		initialSize="1"
+		removeAbandoned="true"
+		removeAbandonedTimeout="15"
+    />
+
+</Context>
