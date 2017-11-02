@@ -14,4 +14,5 @@ public class Stagiaire extends Utilisateur{
 		super(id);
 	}
 	
+
 }

@@ -6,7 +6,7 @@
   <title>QCMv - Acces Stagiaires</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="<%=request.getContextPath() %>/img/question.png" />
+  <link rel="icon" type="image/png" href="<%=request.getContextPath()%>/img/question.png" />
   <link rel="stylesheet" href="<%=request.getContextPath() %>/theme/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/theme/css/style.css">
   <script src="<%=request.getContextPath() %>/theme/bootstrap/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9">
-				<form>
+				<form action="<%=request.getContextPath() %>/login/validerAcces" method="post">
 				  	<div class="form-group">
 				    	<label for="identifiant">Email :</label>
 				    	<input type="email" class="form-control" id="identifiant" name="identifiant">

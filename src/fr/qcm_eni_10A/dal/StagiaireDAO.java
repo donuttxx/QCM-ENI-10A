@@ -15,9 +15,7 @@ import fr.qcm_eni_10A.util.AccesBase;
 
 public class StagiaireDAO {
 	
-	/*
-	 * Recherche par Id
-	 */
+	
 	public static Stagiaire rechercher(int id) throws SQLException{
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -28,7 +26,7 @@ public class StagiaireDAO {
 			rqt = cnx.prepareStatement("select id, nom, prenom, email, motdepasse from stagiaire where id=?");
 			rqt.setInt(1, id);
 			rs=rqt.executeQuery();
-			// SI on trouve au moins 1 résultat, on prend le 1er pour mettre à jour les informations du candidat utilisé pour la recherche.
+
 			if (rs.next()){
 				stagiaire = new Stagiaire();
 				stagiaire.setId(rs.getInt("id"));
@@ -37,7 +35,7 @@ public class StagiaireDAO {
 				stagiaire.setEmail(rs.getString("email"));
 				stagiaire.setMotDePasse(rs.getString("motdepasse"));
 			}
-			// ...sinon on renvoie null
+
 			else {
 				stagiaire = null;
 			}
@@ -50,9 +48,7 @@ public class StagiaireDAO {
 		return stagiaire;
 	}
 	
-	/*
-	 * Recherche par login et mot de passe
-	 */
+	
 	public static Stagiaire rechercher(String mail, String password) throws SQLException{
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -64,7 +60,7 @@ public class StagiaireDAO {
 			rqt.setString(1, mail);
 			rqt.setString(2, password);
 			rs=rqt.executeQuery();
-			// SI on trouve au moins 1 résultat, on prend le 1er pour mettre à jour les informations du candidat utilisé pour la recherche.
+
 			if (rs.next()){
 				stagiaire = new Stagiaire();
 				stagiaire.setId(rs.getInt("id"));
@@ -73,7 +69,7 @@ public class StagiaireDAO {
 				stagiaire.setEmail(rs.getString("email"));
 				stagiaire.setMotDePasse(rs.getString("motdepasse"));
 			}
-			// ...sinon on renvoie null
+
 			else {
 				stagiaire = null;
 			}
@@ -86,20 +82,17 @@ public class StagiaireDAO {
 		return stagiaire;
 	}
 
-	/*
-	 * Ajoute un candidat en base puis retourne le candidat (valorisé avec son Id généré par la base de données)
-	 */
+	
 	public static Stagiaire ajouter(Stagiaire stagiaire) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		try{
 			cnx=AccesBase.getConnection();
 			
-			// Pour s'assurer de bien récupérer l'identifiant du nouveau candidat que nous ajoutons, 
-			// l'ajout et la récupération de l'identifiant se font dans une même transaction.
+		
 			cnx.setAutoCommit(false);
 			
-			// Insertion du nouveau candidat
+			
 			String insert = "insert into stagiaires (nom, prenom, email, motdepasse) values (?,?,?,?)";
 			rqt = cnx.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, stagiaire.getNom());
@@ -111,20 +104,17 @@ public class StagiaireDAO {
 			key.next();
 			stagiaire.setId(key.getInt(1));
 			
-			// Nous avons récupéré le nouvel identifiant : la transaction est validée.
 			cnx.commit();
 			
 			key.close();
 			
 		} catch (SQLException sqle){
 			
-			// Quelque chose s'est mal passé (après l'obtention de la connexion), 
-			// la transaction est annulée.			
+					
 			if (cnx != null) {
 				cnx.rollback();
 			}
 			
-			// Faire remonter l'exception
 			throw sqle;
 		} finally {
 			if (rqt!=null) rqt.close();
